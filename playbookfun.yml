@@ -1,0 +1,24 @@
+---
+- name: playball
+  hosts: renamed, !taz
+  connection: ssh
+  gather_facts: no
+  become: yes
+
+  tasks:
+    
+  # the command module issues a write the remote host
+
+  - name: create remote Group "funkytown"
+    group:
+	  name: funkytown
+      gid: 2012
+      state: present	
+	
+  - name: Add user "sysadmin" to remote server
+     user:
+       name: al22-sa
+       comment: "Privileged User"
+       uid: 2001
+       group: funkytown
+   
